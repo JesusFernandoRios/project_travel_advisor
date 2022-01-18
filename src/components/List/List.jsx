@@ -11,9 +11,10 @@ function List() {
 
     const places = [ 
         {name: 'Cool place'},
-        {name: 'Cool place'},
-        {name: 'Cool place'}
+        {name: 'best beer'},
+        {name: 'best Stake'}
     ]
+    
 
     return (
         <div className={classes.container}>
