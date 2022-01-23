@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const URL = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary'
-const travelApiKey = 'bfce10d481mshd4737c9a8639a4fp1fa23djsn5b71ddac24ea'
+// const travelApiKey = 'bfce10d481mshd4737c9a8639a4fp1fa23djsn5b71ddac24ea'
 
 // const options = {
 //     params: {
@@ -19,7 +19,7 @@ const travelApiKey = 'bfce10d481mshd4737c9a8639a4fp1fa23djsn5b71ddac24ea'
 // };
   
 
- export const getPlacesData = async ( sw, ne) => {
+ export const getPlacesData = async ( sw , ne) => {
     try {
         const { data: { data } } = await axios.get(URL , {
             params: {
@@ -34,8 +34,10 @@ const travelApiKey = 'bfce10d481mshd4737c9a8639a4fp1fa23djsn5b71ddac24ea'
                 'x-rapidapi-key': 'bfce10d481mshd4737c9a8639a4fp1fa23djsn5b71ddac24ea'
               }
         });
-        return data
+
+        return data;
+
     } catch ( err ) {
-        throw err
+        console.log(err)
     }
 }

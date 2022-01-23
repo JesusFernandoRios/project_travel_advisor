@@ -5,19 +5,11 @@ import PlaceDetails from '../PlaceDetails/PlaceDetails'
 
 import useStyles from './styles'
 
-function List() {
+function List( { places }) {
 
     const classes = useStyles();
-    const [type, setType] = useState('restaurant')
+    const [type, setType] = useState('restaurants')
     const [rating, setRating] = useState('')
-
-    
-
-    const places = [ 
-        {name: 'Cool place'},
-        {name: 'best beer'},
-        {name: 'best Stake'}
-    ]
     
 
     return (
@@ -25,6 +17,8 @@ function List() {
             <Typography variant='h4'>
                 Restaurants, Hotels & Attractions around you
             </Typography>
+
+            {/* Type Dropdown */}
             <FormControl className={classes.formControl}>
                 <InputLabel>Type</InputLabel>
                 <Select value={type} onChange={(e) => setType(e.target.value)}>
@@ -34,6 +28,7 @@ function List() {
                 </Select>
             </FormControl>
 
+            {/* rating dropdown */}
             <FormControl className={classes.formControl}>
                 <InputLabel>Rating</InputLabel>
                 <Select value={rating} onChange={(e) => setRating(e.target.value)}>
@@ -43,6 +38,8 @@ function List() {
                     <MenuItem value={4.5}>Above 4.5 </MenuItem>
                 </Select>
             </FormControl>
+
+            {/* Selected Option Results Grid */}
             <Grid container spacing={3} className={classes.list}>
                 {places?.map((place, index) => (
                     <Grid item key={index} xs={12}>
