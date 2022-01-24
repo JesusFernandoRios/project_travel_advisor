@@ -16,6 +16,8 @@ const App = () => {
 
     const [childClicked, setChildClicked] = useState(null)
 
+    const [isLoading, setIsLoading] =useState(false)
+
 
     // getting user location 
     useEffect(() => {
@@ -26,10 +28,14 @@ const App = () => {
 
 
     useEffect(() => {
+
+        setIsLoading(true);
+
         getPlacesData( bounds.sw, bounds.ne) 
             .then((data)=> {
                 
                 setPlaces(data);
+                setIsLoading(false)
         })
 
     },[coordinates, bounds]);
@@ -44,6 +50,7 @@ const App = () => {
                     <List 
                         places ={places}
                         childClicked={childClicked}
+                        isLoading={isLoading}
                         />
                 </Grid>
                 <Grid item xs={12} md={8}>
