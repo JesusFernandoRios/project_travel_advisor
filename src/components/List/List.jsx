@@ -61,7 +61,7 @@ function List( { places, childClicked, isLoading}) {
                 {/* Selected Option Results Grid */}
                 <Grid container spacing={3} className={classes.list}>
                     {places?.map((place, index) => (
-                        <Grid item key={index} xs={12}>
+                        <Grid ref={elRefs[index]} item key={index} xs={12}>
                             <PlaceDetails 
                                 place={place}
                                 selected={Number(childClicked) === index}
