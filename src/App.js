@@ -20,6 +20,9 @@ const App = () => {
     const [rating, setRating] = useState('')
     const [isLoading, setIsLoading] =useState(false)
 
+    // cascading to list and map components
+    const [filteredPlaces, setFilteredPlaces] =useState([])
+
 
     // getting user location 
     useEffect(() => {
@@ -27,6 +30,15 @@ const App = () => {
             setCoordinates( {lat: latitude, lng: longitude} )
         })
     },[]);
+
+    // getting user Rating
+    useEffect(() => {
+      const filteredPlaces = places.filter((place) => place.rating > rating)
+
+      setFilteredPlaces(filteredPlaces)
+      
+    }, [rating]);
+    
 
 
     useEffect(() => {
@@ -37,6 +49,7 @@ const App = () => {
             .then((data)=> {
                 
                 setPlaces(data);
+                setFilteredPlaces([])
                 setIsLoading(false)
         })
 
@@ -50,7 +63,7 @@ const App = () => {
             <Grid container spacing={3} style={{width: '100%'}}>
                 <Grid item xs={12} md={4}>
                     <List 
-                        places ={places}
+                        places ={filteredPlaces.length ? filteredPlaces : places}
                         childClicked={childClicked}
                         isLoading={isLoading}
                         type={type}
@@ -64,7 +77,7 @@ const App = () => {
                         setCoordinates={setCoordinates} 
                         setBounds={setBounds}
                         coordinates={coordinates}
-                        places={places}
+                        places={filteredPlaces.length ? filteredPlaces : places}
                         setChildClicked={setChildClicked}
                     />
                 </Grid>
