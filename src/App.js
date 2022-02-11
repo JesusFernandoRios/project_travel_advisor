@@ -43,24 +43,30 @@ const App = () => {
 
     useEffect(() => {
 
-        setIsLoading(true);
+        if(bounds.sw && bounds.ne) {
+            setIsLoading(true);
 
-        getPlacesData( type, bounds.sw, bounds.ne) 
-            .then((data)=> {
-                
-                setPlaces(data);
-                setFilteredPlaces([])
-                setIsLoading(false)
-        })
+            getPlacesData( type, bounds.sw, bounds.ne) 
+                .then((data)=> {
+                    
+                    let filteredData = data?.filter((place) => place.name && place.num_reviews > 0)
+                    setPlaces(filteredData);
+                    setFilteredPlaces([])
+                    setIsLoading(false)
+            })
+        }
 
-    },[type, coordinates, bounds]);
+    },[type, bounds]);
+
+    console.log(places)
+    console.log(filteredPlaces)
 
     
     return (
         <>
             <CssBaseline />
             <Header  setCoordinates={setCoordinates}/>
-            
+
             <Grid container spacing={3} style={{width: '100%'}}>
                 <Grid item xs={12} md={4}>
                     <List 
