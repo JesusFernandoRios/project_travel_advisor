@@ -5,6 +5,7 @@ import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined"
 import Rating  from '@material-ui/lab/Rating'
 
 import useStyles from './styles'
+import mapStyles from './mapStyles'
 
 export default function Map( {setCoordinates, setBounds, coordinates, places, setChildClicked, weatherData}) {
 
@@ -21,7 +22,7 @@ export default function Map( {setCoordinates, setBounds, coordinates, places, se
                 center={coordinates}
                 defaultZoom={ 14 }
                 margin={ [ 50,50,50,50] }
-                options={''}
+                options={{disableDefaultUI: true, zoomControl: true, styles: mapStyles}}
                 onChange={(e) => { 
                     console.log("this is onchange on google map", e)
                     setCoordinates({ lat: e.center.lat, lng: e.center.lng})
@@ -64,9 +65,9 @@ export default function Map( {setCoordinates, setBounds, coordinates, places, se
                 ))}
 
                 {
-                    weatherData?.list.map((data, index) => (
+                    weatherData?.list?.map((data, index) => (
                         <div key={index} lat={data.coord.lat} lon={data.coord.lon}>
-                            <img src={`https://openweathermap.org/img/w/${data.weather[0].icon}.png`}/>
+                            <img height={100} src={`https://openweathermap.org/img/w/${data.weather[0].icon}.png`}/>
                         </div>
                     ))
                 }
