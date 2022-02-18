@@ -5,12 +5,13 @@ import Header from './components/Header/Header'
 import List from './components/List/List'
 import Map from './components/Map/Map'
 
-import { getPlacesData } from './api'
+import { getPlacesData, getWeatherData } from './api'
 
 const App = () => {
 
     // cascading to map component
     const [places, setPlaces] = useState([]);
+    const [weatherData, setWeatherData] = useState([]);
     const [coordinates, setCoordinates] = useState({});
     const [bounds, setBounds] = useState({})
     const [childClicked, setChildClicked] = useState(null)
@@ -45,6 +46,9 @@ const App = () => {
 
         if(bounds.sw && bounds.ne) {
             setIsLoading(true);
+
+            getWeatherData(coordinates.lat, coordinates.lng)
+                .then((data) => setWeatherData(data))
 
             getPlacesData( type, bounds.sw, bounds.ne) 
                 .then((data)=> {
@@ -86,6 +90,7 @@ const App = () => {
                         coordinates={coordinates}
                         places={filteredPlaces.length ? filteredPlaces : places}
                         setChildClicked={setChildClicked}
+                        weatherData={weatherData}
                     />
                 </Grid>
             </Grid>

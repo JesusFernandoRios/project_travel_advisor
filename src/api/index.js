@@ -22,3 +22,25 @@ import axios from "axios";
         console.log(err)
     }
 }
+
+export const getWeatherData = async ( lat, lng) => {
+
+    try{
+
+        const { data } = await axios.get('https://community-open-weather-map.p.rapidapi.com/find' , {
+            params: {
+                lon: lng,
+                lat: lat,
+            },
+            headers: {
+            'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
+            'x-rapidapi-key': 'bfce10d481mshd4737c9a8639a4fp1fa23djsn5b71ddac24ea'
+                }
+        });
+
+        return data;
+
+    }catch ( err ) {
+        throw err
+    }
+}
