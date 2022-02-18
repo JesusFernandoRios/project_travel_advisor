@@ -12,7 +12,7 @@ import axios from "axios";
               },
               headers: {
                 'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
-                'x-rapidapi-key': 'bfce10d481mshd4737c9a8639a4fp1fa23djsn5b71ddac24ea'
+                'x-rapidapi-key': process.env.REACT_APP_RAPIDAPI_KEY
               }
         });
 
@@ -34,8 +34,8 @@ export const getWeatherData = async ( lat, lng) => {
             },
             headers: {
             'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
-            'x-rapidapi-key': 'bfce10d481mshd4737c9a8639a4fp1fa23djsn5b71ddac24ea'
-                }
+            'x-rapidapi-key': process.env.REACT_APP_RAPIDAPI_KEY,
+            }
         });
 
         return data;
