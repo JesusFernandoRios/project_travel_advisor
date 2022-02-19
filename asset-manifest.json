@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/project_travel_advisor/static/js/main.bbd5da91.js",
+    "index.html": "/project_travel_advisor/index.html",
+    "main.bbd5da91.js.map": "/project_travel_advisor/static/js/main.bbd5da91.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.bbd5da91.js"
+  ]
+}
